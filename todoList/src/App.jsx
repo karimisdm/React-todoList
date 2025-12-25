@@ -6,11 +6,11 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <header className={styles.header}>
-        <img className={styles.logo}/>
-        <h2 className={styles.title}>Todo List</h2>
+      <header className={styles.Header}>
+        <img className={styles.Logo} src='public/to-do.png'/>
+        <h2 className={styles.Title}>Todo List</h2>
       </header>
-      <div className={styles.content}>Content</div>
+      <div className={styles.AppContainer}>Content</div>
     </div>
   )
 }
