@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import styles from './TodoForm.module.css'
 
 export function TodoForm({onCreate}){
+    const [showFields, setShowFields] = useState(true);
 
     function handleSubmit(e){
         const {elements}= e.target;
@@ -15,15 +17,12 @@ export function TodoForm({onCreate}){
         e.target.reset();
     
     };
-    function showButton(){
-        const show= true;
-        return !show;
-    }
-
+  
     return(
         <section>
             <h3 className={styles.Title} >New To-Do
-                <button onClick={showButton}>Hide all fields</button>
+                <button onClick={()=> {setShowFields(!showFields)}}>
+                    {showFields?'Hide':'Show'} all fields</button>
             </h3>
             <form className={styles.Form} onSubmit={handleSubmit}>
                 <div className={styles.FormFields}>
