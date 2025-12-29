@@ -15,10 +15,16 @@ export function TodoForm({onCreate}){
         e.target.reset();
     
     };
+    function showButton(){
+        const show= true;
+        return !show;
+    }
 
     return(
         <section>
-            <h3 className={styles.Title} >New To-Do</h3>
+            <h3 className={styles.Title} >New To-Do
+                <button onClick={showButton}>Hide all fields</button>
+            </h3>
             <form className={styles.Form} onSubmit={handleSubmit}>
                 <div className={styles.FormFields}>
                     <div className={styles.FormField}>
