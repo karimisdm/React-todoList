@@ -1,25 +1,40 @@
 import styles from './TodoForm.module.css'
 
-export function TodoForm(){
+export function TodoForm({onCreate}){
+
+    function handleSubmit(e){
+        const {elements}= e.target;
+        e.preventDefault();
+        onCreate({
+            name: elements.name.value,
+            description: elements.description.value,
+            deadline: elements.deadline.value,
+            priority: elements.priority.value,
+            completed: false,
+        });
+        e.target.reset();
+    
+    };
+
     return(
         <section>
             <h3 className={styles.Title} >New To-Do</h3>
-            <form className={styles.Form}>
+            <form className={styles.Form} onSubmit={handleSubmit}>
                 <div className={styles.FormFields}>
                     <div className={styles.FormField}>
-                        <input type="text" placeholder="Name" autoComplete="off"/>
+                        <input type="text" name='name' placeholder="Name" autoComplete="off"/>
                     </div>
                     <div className={styles.FormField}>
-                        <textarea type="text" placeholder="Description" rows="3"/>
+                        <textarea type="text" name='description' placeholder="Description" rows="3"/>
                     </div>
                     <div className={styles.FormGroup}>
                         <div className={styles.FormField}>
                             <label htmlFor="deadline">Deadline</label>
-                            <input id="deadline" type="date"/>
+                            <input id="deadline" type="date" name='deadline'/>
                         </div>
                         <div className={styles.FormField}>
                             <label htmlFor="priority">Priority</label>
-                            <select id="priority" defaultValue="None">
+                            <select id="priority" defaultValue="None" name='priority'>
                                     <option value="None">None</option>
                                     <option value="low">Low</option>
                                     <option value="medium">Medium</option>
