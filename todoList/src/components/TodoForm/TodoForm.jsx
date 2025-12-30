@@ -9,9 +9,9 @@ export function TodoForm({onCreate}){
         e.preventDefault();
         onCreate({
             name: elements.name.value,
-            description: elements.description.value,
-            deadline: elements.deadline.value,
-            priority: elements.priority.value,
+            description: elements.description?.value ?? '',
+            deadline: elements.deadline?.value ?? '',
+            priority: elements.priority?.value ?? 'None',
             completed: false,
         });
         e.target.reset();
@@ -29,6 +29,7 @@ export function TodoForm({onCreate}){
                     <div className={styles.FormField}>
                         <input type="text" name='name' placeholder="Name" autoComplete="off"/>
                     </div>
+                    {showFields && <>
                     <div className={styles.FormField}>
                         <textarea type="text" name='description' placeholder="Description" rows="3"/>
                     </div>
@@ -49,6 +50,9 @@ export function TodoForm({onCreate}){
                         </div>
                     </div>
                   
+
+                    </>}
+                    
                   
                 </div>
 
