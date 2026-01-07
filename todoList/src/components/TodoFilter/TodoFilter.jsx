@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styles from './TodoFilter.module.css'
+import {COMPLETED_FILTERS, PRIORITY_FILTERS} from '../../constants/filters';
 
 export function TodoFilter(){
 
@@ -13,17 +14,22 @@ export function TodoFilter(){
             <div className={styles.Filters}>
                 <label htmlFor="completed">Completed</label>
                 <select id="completed" defaultValue={completed} onChange={(event)=> setCompleted(event.target.value)}>
-                    <option value='all'>All</option>
-                    <option value='active'>Active</option>
-                    <option value='completed'>Completed</option>
+                    {Object.entries(COMPLETED_FILTERS).map(([key,{label}])=>(
+                        <option key={key} value={key}>
+                            {label}
+                        </option>
+
+                    ))}
                 </select>
 
                 <label htmlFor="priority">Priority</label>
                 <select id="priority" defaultValue={priority} onChange={(event)=> setPriority(event.target.value)}>
-                    <option value='all'>All</option>
-                    <option value='high'>High</option>
-                    <option value='medium'>Medium</option>
-                    <option value='low'>Low</option>
+                    {Object.entries(PRIORITY_FILTERS).map(([key,{label}])=>(
+                        <option key={key} value={key}>
+                           {label}
+                        </option>
+                    ))
+                    }
                 </select>
             </div>
         </section>
