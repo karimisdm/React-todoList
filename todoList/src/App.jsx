@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from './App.module.css'
 import { TodoForm } from './components/TodoForm/TodoForm.jsx'
 import { TodoList } from './components/TodoList/TodoList.jsx'
+import { TodoFilter } from './components/TodoFilter/TodoFilter.jsx';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       </header>
       <div className={styles.AppContainer}>
         <TodoForm onCreate={handleCreate}/>
+        <TodoFilter/>
         <TodoList todos={todos} onUpdate={handleUpdate} onDelete={handleDelete}/>
       </div>
       
