@@ -19,6 +19,9 @@ function App() {
   };
   function handleUpdate(id,updatedTodo){
     setTodos((prevTodos)=> prevTodos.map((todo)=> todo.id === id ? updatedTodo : todo));
+  };
+  function handleDelete(id){
+    setTodos((prevTodos)=> prevTodos.filter((todo)=> todo.id !== id));
   }
 
   return (
@@ -29,7 +32,7 @@ function App() {
       </header>
       <div className={styles.AppContainer}>
         <TodoForm onCreate={handleCreate}/>
-        <TodoList todos={todos} onUpdate={handleUpdate}/>
+        <TodoList todos={todos} onUpdate={handleUpdate} onDelete={handleDelete}/>
       </div>
       
     </div>

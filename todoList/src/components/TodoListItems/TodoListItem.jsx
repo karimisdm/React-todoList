@@ -5,7 +5,7 @@ import { TodoFormField } from '../TodoFormField/TodoFormField';
 import { Default_PRIORITY } from '../../constants/priorities';
 
 
-export function TodoListItem({ todo, onUpdate }) {
+export function TodoListItem({ todo, onUpdate, onDelete }) {
     const [isEditing, setIsEditing] = useState(false);
 
     function handleChanges(event) {
@@ -28,7 +28,8 @@ export function TodoListItem({ todo, onUpdate }) {
         });
         setIsEditing(false);
 
-    }
+    };
+   
 
     const viewMode = (
         <div className={styles.Content}>
@@ -48,6 +49,7 @@ export function TodoListItem({ todo, onUpdate }) {
             </div>
             <div className={styles.Controls}>
                 <button onClick={() => setIsEditing(!isEditing)}>📝</button>
+                <button onClick={() => onDelete(todo.id)}>🗑️</button>
             </div>
         </div>
     );
