@@ -1,7 +1,7 @@
 import styles from './TodoList.module.css';
 import {TodoListItem} from '../TodoListItems/TodoListItem.jsx';
 
-export function TodoList({ todos, onUpdate }) {
+export function TodoList({ todos, onUpdate}) {
     return (
         <section>
             <h3>To-Dos</h3>

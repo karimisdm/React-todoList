@@ -7,8 +7,11 @@ export function TodoForm({onCreate}){
     const [showFields, setShowFields] = useState(true);
 
     function handleSubmit(e){
+         e.preventDefault();
+
         const {elements}= e.target;
-        e.preventDefault();
+        if(elements.name.value==='') return;
+       
         onCreate({
             name: elements.name.value,
             description: elements.description?.value ?? '',

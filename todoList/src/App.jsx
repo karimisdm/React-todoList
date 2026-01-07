@@ -17,8 +17,8 @@ function App() {
   function handleCreate(newTodo){
     setTodos((prevTodos)=> [...prevTodos, {...newTodo, id:`${prevTodos.length + 1}`}]);
   };
-  function handleUpdate(updatedTodo){
-    setTodos((prevTodos)=> prevTodos.map((todo)=> todo.id === updatedTodo.id ? updatedTodo : todo));
+  function handleUpdate(id,updatedTodo){
+    setTodos((prevTodos)=> prevTodos.map((todo)=> todo.id === id ? updatedTodo : todo));
   }
 
   return (
