@@ -5,7 +5,7 @@ export const COMPLETED_FILTERS = {
 };
 export const PRIORITY_FILTERS = {
     all:{label:'All', value:''},
-    high: {label: 'High', value: 'high'},
-    medium: {label:'Medium', value:'medium'},
-    low: {label:'Low', value:'low'}
+    high: {label: 'High', value: 'High'},
+    medium: {label:'Medium', value:'Medium'},
+    low: {label:'Low', value:'Low'}
 };
