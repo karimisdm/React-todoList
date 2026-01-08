@@ -5,16 +5,19 @@ export function TodoFormField({todo={},showFields=true}) {
     return (
         <div className={styles.FormFields}>
             <div className={styles.FormField}>
-                <input type="text" name='name' placeholder="Name" autoComplete="off" defaultValue={todo.name} />
+                <input type="text" name='name' placeholder="Name" autoComplete="off" defaultValue={todo.name}
+                   required minLength={3} maxLength={30}/>
             </div>
             {showFields && <>
                 <div className={styles.FormField}>
-                    <textarea type="text" name='description' placeholder="Description" rows="3" defaultValue={todo.description} />
+                    <textarea type="text" name='description' placeholder="Description" rows="3" defaultValue={todo.description}
+                      maxLength={200}/>
                 </div>
                 <div className={styles.FormGroup}>
                     <div className={styles.FormField}>
                         <label htmlFor="deadline">Deadline</label>
-                        <input id="deadline" type="date" name='deadline' defaultValue={todo.deadline} />
+                        <input id="deadline" type="date" name='deadline' defaultValue={todo.deadline}
+                          min={new Date().toISOString().split('T')[0]} />
                     </div>
                     <div className={styles.FormField}>
                         <label htmlFor="priority">Priority</label>
