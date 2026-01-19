@@ -1,27 +1,25 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import {useForm} from 'react-hook-form'
 import styles from './TodoForm.module.css'
 import { Default_PRIORITY, PRIORITIES } from '../../constants/priorities';
 import { TodoFormField } from '../TodoFormField/TodoFormField';
 
 export function TodoForm({onCreate}){
     const [showFields, setShowFields] = useState(true);
+    const {register,handleSubmit, reset}= useForm({
+        defaultValues:{
+            description:'',
+            deadline:'',
+            priority:Default_PRIORITY,
+            completed:false
+        }
+    });
 
-    function handleSubmit(e){
-         e.preventDefault();
-
-        const {elements}= e.target;
-        if(elements.name.value==='') return;
-       
-        onCreate({
-            name: elements.name.value,
-            description: elements.description?.value ?? '',
-            deadline: elements.deadline?.value ?? '',
-            priority: elements.priority?.value ?? Default_PRIORITY,
-            completed: false,
-        });
-        e.target.reset();
-    
+    function handleCreate(data){
+        onCreate(data);
+        reset();
     };
+    
   
     return(
         <section>
@@ -29,8 +27,8 @@ export function TodoForm({onCreate}){
                 <button onClick={()=> {setShowFields(!showFields)}}>
                     {showFields?'Hide':'Show'} all fields</button>
             </h3>
-            <form className={styles.Form} onSubmit={handleSubmit}>
-                <TodoFormField showFields={showFields}/>
+            <form className={styles.Form} onSubmit={handleSubmit(handleCreate)}>
+                <TodoFormField showFields={showFields} register={register}/>
 
                 <input type="submit" value="Add"/>
 
