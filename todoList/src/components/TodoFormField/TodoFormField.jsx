@@ -17,7 +17,7 @@ export function TodoFormField({todo={},showFields=true, register}) {
                     <div className={styles.FormField}>
                         <label htmlFor="deadline">Deadline</label>
                         <input id="deadline" type="date" defaultValue={todo.deadline}
-                           {...register('deadline', {min:new Date().toISOString().split('T')[0] })} />
+                           {...register('deadline', !todo.id && {min:new Date().toISOString().split('T')[0] })} />
                     </div>
                     <div className={styles.FormField}>
                         <label htmlFor="priority">Priority</label>
