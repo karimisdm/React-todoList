@@ -54,3 +54,9 @@
   font-size: 13px;
   color: Salmon;
 }
+input[aria-invalid='true'],
+textarea[aria-invalid='true'],
+select[aria-invalid='true'] {
+  border-color: Salmon;
+  outline-color: salmon;
+}

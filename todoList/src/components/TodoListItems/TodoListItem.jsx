@@ -8,7 +8,7 @@ import { Default_PRIORITY } from '../../constants/priorities';
 
 export function TodoListItem({ todo, onUpdate, onDelete }) {
     const [isEditing, setIsEditing] = useState(false);
-    const {register, handleSubmit}= useForm({defaultValues: todo});
+    const {register, handleSubmit, formState:{errors}}= useForm({defaultValues: todo});
 
     function handleChanges(event) {
         onUpdate(todo.id, { ...todo, completed: event.target.checked });
@@ -46,7 +46,7 @@ export function TodoListItem({ todo, onUpdate, onDelete }) {
     );
     const editMode = (
         <form className={styles.Content} onReset={() => setIsEditing(false)} onSubmit={handleSubmit(handleEdit)}>
-            <TodoFormField todo={todo} register={register}/>
+            <TodoFormField todo={todo} register={register} errors={errors}/>
             <div className={styles.Controls}>
                 <input type='submit' value='💾' />
                 <input type='reset' value='❌' />
