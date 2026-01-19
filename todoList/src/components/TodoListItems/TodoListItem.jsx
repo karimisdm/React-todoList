@@ -8,7 +8,7 @@ import { Default_PRIORITY } from '../../constants/priorities';
 
 export function TodoListItem({ todo, onUpdate, onDelete }) {
     const [isEditing, setIsEditing] = useState(false);
-    const {register, handleSubmit}= useForm();
+    const {register, handleSubmit}= useForm({defaultValues: todo});
 
     function handleChanges(event) {
         onUpdate(todo.id, { ...todo, completed: event.target.checked });

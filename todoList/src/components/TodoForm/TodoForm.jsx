@@ -6,7 +6,7 @@ import { TodoFormField } from '../TodoFormField/TodoFormField';
 
 export function TodoForm({onCreate}){
     const [showFields, setShowFields] = useState(true);
-    const {register,handleSubmit, reset}= useForm({
+    const {register,handleSubmit, reset, formState:{errors}}= useForm({
         defaultValues:{
             description:'',
             deadline:'',
@@ -28,7 +28,7 @@ export function TodoForm({onCreate}){
                     {showFields?'Hide':'Show'} all fields</button>
             </h3>
             <form className={styles.Form} onSubmit={handleSubmit(handleCreate)}>
-                <TodoFormField showFields={showFields} register={register}/>
+                <TodoFormField showFields={showFields} register={register} errors={errors} />
 
                 <input type="submit" value="Add"/>
 
