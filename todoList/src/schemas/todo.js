@@ -7,7 +7,7 @@ export function getTodoSchema(){
             'Name must be at most 50 characters long'
         ),
         description: Yup.string().max(200, 'Description must be at most 200 characters long'),
-        deadline: Yup.date().min(new Date().toISOString().split('T')[0], 'Deadline must be in the future'),
+        deadline: Yup.string().nullable().transform((value) => value === '' ? null : value).matches(/\d{4}-\d{2}-\d{2}/, 'Invalid date format'),
         priority: Yup.string().required('Priority is required').oneOf(Object.keys(PRIORITIES),'Invalid priority selected')
 
     })
