@@ -3,10 +3,13 @@ import {useForm} from 'react-hook-form'
 import styles from './TodoForm.module.css'
 import { Default_PRIORITY, PRIORITIES } from '../../constants/priorities';
 import { TodoFormField } from '../TodoFormField/TodoFormField';
+import {yupResolver} from '@hookform/resolvers/yup';
+import { getTodoSchema } from '../../schemas/todo';
 
 export function TodoForm({onCreate}){
     const [showFields, setShowFields] = useState(true);
     const {register,handleSubmit, reset, formState:{errors}}= useForm({
+        resolver: yupResolver(getTodoSchema()),
         defaultValues:{
             description:'',
             deadline:'',
