@@ -9,7 +9,7 @@ import { getTodoSchema } from '../../schemas/todo';
 export function TodoForm({onCreate}){
     const [showFields, setShowFields] = useState(true);
     const {register,handleSubmit, reset, formState:{errors}}= useForm({
-        resolver: yupResolver(getTodoSchema()),
+        resolver: yupResolver(getTodoSchema({isNew:true})),
         defaultValues:{
             description:'',
             deadline:'',
