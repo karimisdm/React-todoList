@@ -4,15 +4,16 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { TodoFormField } from '../TodoFormField/TodoFormField';
 import { Default_PRIORITY } from '../../constants/priorities';
-import {yupResolver} from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { getTodoSchema } from '../../schemas/todo';
 
 
 export function TodoListItem({ todo, onUpdate, onDelete }) {
     const [isEditing, setIsEditing] = useState(false);
-    const {register, handleSubmit, formState:{errors}}= useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(getTodoSchema()),
-        defaultValues: todo});
+        defaultValues: todo
+    });
 
     function handleChanges(event) {
         onUpdate(todo.id, { ...todo, completed: event.target.checked });
@@ -24,7 +25,7 @@ export function TodoListItem({ todo, onUpdate, onDelete }) {
         setIsEditing(false);
 
     };
-   
+
 
     const viewMode = (
         <div className={styles.Content}>
@@ -34,7 +35,7 @@ export function TodoListItem({ todo, onUpdate, onDelete }) {
                 {todo.description && <span className={styles.Description}>{todo.description}</span>}
                 <div className={styles.AdditionalInfo}>
                     {todo.deadline}
-                    {todo.priority !== 'None' && (
+                    {todo.priority && todo.priority.toLowerCase() !== 'none' && PRIORITIES[todo.priority.toLowerCase()] && (
                         <span style={{ color: PRIORITIES[todo.priority.toLowerCase()].color }}>
                             {PRIORITIES[todo.priority.toLowerCase()].label}
                         </span>
@@ -50,7 +51,7 @@ export function TodoListItem({ todo, onUpdate, onDelete }) {
     );
     const editMode = (
         <form className={styles.Content} onReset={() => setIsEditing(false)} onSubmit={handleSubmit(handleEdit)}>
-            <TodoFormField todo={todo} register={register} errors={errors}/>
+            <TodoFormField todo={todo} register={register} errors={errors} />
             <div className={styles.Controls}>
                 <input type='submit' value='💾' />
                 <input type='reset' value='❌' />

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './App.module.css'
 import { TodoForm } from './components/TodoForm/TodoForm.jsx'
 import { TodoList } from './components/TodoList/TodoList.jsx'
@@ -7,8 +7,26 @@ import { TodoFilter } from './components/TodoFilter/TodoFilter.jsx';
 function App() {
 
   const [todos, setTodos]= useState([]);
-
   const [filters, setFilters] = useState({});
+
+  function fetchTodos(){
+    fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}todos`, {
+      method: 'GET',
+      headers:{'content-type': 'application/json'},
+    })
+     .then((response)=>{
+       if(response.ok){
+        return response.json();
+       }
+        })
+          .then((todos)=>{
+          setTodos(todos);
+     })
+  };
+
+  useEffect(()=>{
+    fetchTodos();
+  }, [])
 
   function handleCreate(newTodo){
     setTodos((prevTodos)=> [...prevTodos, {...newTodo, id:`${prevTodos.length + 1}`}]);

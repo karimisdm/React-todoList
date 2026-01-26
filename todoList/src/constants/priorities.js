@@ -4,4 +4,4 @@ export const PRIORITIES = {
     high: {label:'High', color:'Red'},
     none: {label:'None', color:'Gray'},
 };
-export const Default_PRIORITY = 'None';
+export const Default_PRIORITY = 'none';
