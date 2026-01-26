@@ -6,14 +6,7 @@ import { TodoFilter } from './components/TodoFilter/TodoFilter.jsx';
 
 function App() {
 
-  const ToDos_Default = [
-    {id: '1', name: 'Learn React', description: 'Study the React library and build projects.', deadline:'2024-12-14', priority:'High',completed:false},
-    {id: '2', name: 'Grocery Shopping', description: 'Buy fruits, vegetables, and other essentials.', deadline:'2024-12-15', priority:'Medium',completed:false},
-    {id: '3', name: 'Workout', description: 'Go for a run or hit the gym for a workout session.', deadline:'2024-12-16', priority:'Low',completed:true},
-    {id: '4', name: 'Read Book',description:'', deadline:'',priority:'None',completed:false},
-
-  ];
-  const [todos, setTodos]= useState(ToDos_Default);
+  const [todos, setTodos]= useState([]);
 
   const [filters, setFilters] = useState({});
 
