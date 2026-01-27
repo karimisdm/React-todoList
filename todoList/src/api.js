@@ -11,7 +11,7 @@ export const api = {
     todos:{
         getAll:(params={})=>{
              return http.get('todos', {params}).catch((error)=>{
-                error?.response.status===404? []: Promise.reject(error)
+                return error?.response?.status===404 ? [] : Promise.reject(error)
              })
               },
 
