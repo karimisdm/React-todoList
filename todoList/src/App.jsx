@@ -13,7 +13,6 @@ function App() {
 
   return (
     <div className={styles.App}>
-      {JSON.stringify(todos.isLoading)}
       <header className={styles.Header}>
         <img className={styles.Logo} src='public/to-do.png' />
         <h2 className={styles.Title}>Todo List</h2>
